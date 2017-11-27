@@ -1,0 +1,320 @@
+
+/*=====  Generics  ======*/
+  h1, h2, h3, h4, h5 {
+    font-feature-settings: "dlig","liga","lnum","kern";
+  }
+  p {
+    font-feature-settings: "kern","onum","liga";
+  }
+
+
+/*=====  Document container  ======*/
+  .document {
+    @apply .text-text;
+    padding: 60px 40px 60px 100px;
+  }
+
+
+/*=====  The inline code block  ======*/
+  .document code:not([class*="language-"]) {
+    @apply .bg-inlineCode .px-inlinePre;
+    font-size: inherit;
+    color: inherit;
+    word-break: break-word;
+  }
+
+
+
+/*=====  Pre code block  ======*/
+  .document pre[class*="language-"] {
+    @apply .font-mono;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 30px;
+  }
+  .document code[class*="language-"], .document  pre[class*="language-"] {
+    @apply .text-sm .font-normal;
+  }
+
+
+
+/*=====  The small title above codeblocks  ======*/
+  .document .listingblock > .title {
+    @apply .text-anchor .font-semibold;
+    font-family: "Noto Serif", "DejaVu Serif", serif;
+    font-style: italic;
+  }
+  .document .listingblock > .title + .content pre[class*="language-"] {
+    margin-top: 5px;
+  }
+
+
+
+/*=====  Anchor tags inside doc content  ======*/
+  .document a:not(.link) {
+    @apply .text-anchor;
+    text-decoration: none;
+    background-image: linear-gradient(180deg, transparent 50%, config(textColors.anchor) 0);
+    background-position: 0 93%;
+    background-repeat: repeat-x;
+    background-size: 100% .15rem;
+  }
+
+
+
+/*=====  Doc heading  ======*/
+  .document h1 {
+    @apply .text-heading;
+    font-size: 3.75rem;
+    margin-bottom: 30px;
+  }
+  .document h1 a.link, .document h2 a.link, .document h3 a.link, .document h4 a.link {
+    @apply .text-heading .no-underline;
+  }
+
+
+
+/*=====  Section level 1 ======*/
+  .document .sect1 {
+    border-top: 1px solid config(backgroundColors.border);
+    margin-top: 2.75rem;
+    padding-top: 2.5rem;
+  }
+
+
+
+/*=====  Section level 2 ======*/
+  .document .sect2 {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+
+
+/*=====  Section level 3 ======*/
+  .document .sect3 {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+  }
+
+
+
+/*=====  Section level 1 heading  ======*/
+  .document h2 {
+    margin-bottom: 10px;
+  }
+  .document h2 a.link {
+    font-size: 2.2rem;
+  }
+
+
+
+/*=====  Section level 2 heading  ======*/
+  .document h3 {
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .document h3 a.link {
+    font-size: 1.4rem;
+  }
+
+
+
+/*=====  Section level 3 heading ======*/
+  .document h4 {
+    position: relative;
+    margin-bottom: 5px;
+  }
+  .document h4:before {
+    @apply .bg-border;
+    position: absolute;
+    content: '';
+    height: 1px;
+    left: -6.25rem;
+    right: 0;
+    top: 18px;
+  }
+  .document h4 a.link {
+    font-size: 1.2rem;
+    background: #fff;
+    display: inline-block;
+    z-index: 1;
+    position: relative;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: -20px;
+  }
+
+
+
+
+/*=====  Ordered & Unordered list ======*/
+  .document .olist ol, .document .olist ul {
+    list-style-type: none;
+  }
+
+
+
+/*=====  Ordered list ======*/
+  .document .paragraph, .document .olist {
+    margin-bottom: 30px;
+  }
+  .document .olist ol > li {
+    padding: 6px 0 6px 25px;
+    counter-increment: top-level;
+  }
+  .document .olist ol > li:before {
+    content: counter(top-level) ".";
+    font-feature-settings: "lnum","tnum";
+    position: absolute;
+    margin-left: -25px;
+    text-align: right;
+    width: 15px;
+  }
+  .document .olist.ol-shrinked {
+    margin-bottom: 20px;
+  }
+  .document .olist.ol-shrinked ol > li {
+    padding: 2px 0;
+  }
+  .document .olist.ol-spaced ol > li {
+    padding: 12px 0;
+  }
+
+
+
+/*=====  All images ======*/
+  .document img {
+    max-width: 100%;
+  }
+
+
+
+
+/*=====  First paragraph in the doc ======*/
+  .document #preamble .paragraph p {
+    @apply .font-light .text-2xl .text-fadedText;
+  }
+
+
+
+
+/*=====  Table of contents ======*/
+  .document .toc {
+    position: relative;
+    margin: 50px 0;
+  }
+  .document .toc:before {
+    @apply .bg-border;
+    position: absolute;
+    content: '';
+    height: 1px;
+    left: -6.25rem;
+    right: 0;
+    top: 14px;
+  }
+  .document .toc .title {
+    @apply .text-ligibleGray .uppercase .font-semibold .text-base;
+    letter-spacing: 1px;
+    display: inline-block;
+    background: #fff;
+    z-index: 1;
+    position: relative;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: -20px;
+    margin-bottom: 20px;
+  }
+  .document .toc ul {
+    list-style: none;
+  }
+  .document .toc li a {
+    @apply .font-medium .text-sm .no-underline;
+    background: none;
+    text-shadow: none;
+  }
+  .document .toc .sectlevel2, .document .toc .sectlevel3 {
+    padding-left: 20px;
+  }
+
+
+
+
+/*=====  Admonition block ======*/
+  .document .admonitionblock {
+    @apply .bg-adBlock;
+    border-radius: 4px 4px 6px 6px;
+    padding: 15px;
+    position: relative;
+    border-left: 1px solid config(backgroundColors.border);
+    border-right: 1px solid config(backgroundColors.border);
+    border-bottom: 1px solid config(backgroundColors.border);
+    margin: 10px 0 30px 0;
+  }
+  .document .admonitionblock:before {
+    content: "";
+    height: 5px;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: calc(100% + 2px);
+    border-radius: 3px 3px 0 0;
+  }
+  .document .admonitionblock.tip:before {
+    @apply .bg-adTip;
+  }
+  .document .admonitionblock.note:before {
+    @apply .bg-adNote;
+  }
+  .document .admonitionblock table td, .document .admonitionblock table th {
+    vertical-align: middle;
+  }
+  .document .admonitionblock td {
+    padding: 15px;
+  }
+  .document .admonitionblock table td.icon {
+    display: table-cell;
+    width: auto;
+    height: auto;
+  }
+  .document .admonitionblock .fa {
+    width: 32px;
+    height: 32px;
+    display: block;
+    position: relative;
+    background-size: 90%;
+  }
+  .document .admonitionblock .fa.icon-tip {
+    background: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%2225px%22%20height%3D%2230px%22%20viewBox%3D%220%200%2025%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%3E%3Cpath%20d%3D%22M13.363%201.978l-11.36%2014.48%2011%20.01-.818%2011.522%2010.813-15.546-11.234-.01%201.6-10.456zm-2.65%2027.378c-.377-.406-.563-.94-.522-1.508l.666-9.378H2.002c-.772%200-1.46-.433-1.797-1.13-.34-.697-.252-1.51.226-2.12L11.795.736c.757-.966%202.315-.972%203.096-.06.38.443.54%201.014.45%201.606l-1.246%208.153H23c.746%200%201.425.413%201.77%201.075.348.667.298%201.464-.132%202.08L13.824%2029.14c-.38.548-.974.86-1.627.86-.562%200-1.103-.234-1.483-.644z%22%20fill%3D%22%234dc0b5%22%20fill-rule%3D%22evenodd%22/%3E%3C/svg%3E%0A') no-repeat;
+  }
+  .document .admonitionblock .fa.icon-note {
+    background: url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20width%3D%2230px%22%20height%3D%2230px%22%20viewBox%3D%220%200%2030%2030%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%3E%3Cg%20fill-rule%3D%22nonzero%22%20fill%3D%22%231594fd%22%3E%3Cpath%20d%3D%22M15%2030C6.714%2030%200%2023.286%200%2015S6.714%200%2015%200s15%206.714%2015%2015-6.714%2015-15%2015zm0-28.57C7.5%201.43%201.43%207.5%201.43%2015S7.5%2028.57%2015%2028.57%2028.57%2022.5%2028.57%2015%2022.5%201.43%2015%201.43z%22/%3E%3Cg%20transform%3D%22translate%2813.93%208.214%29%22%3E%3Cpath%20d%3D%22M1.07%2013.57c-.39%200-.713-.32-.713-.713V4.643c0-.393.322-.714.714-.714.394%200%20.716.32.716.713v8.214c0%20.393-.322.714-.715.714z%22/%3E%3Ccircle%20cx%3D%221.07142857%22%20cy%3D%221.07142857%22%20r%3D%221%22/%3E%3Cpath%20d%3D%22M1.07%202.143C.465%202.143%200%201.68%200%201.07%200%20.465.464%200%201.07%200c.61%200%201.073.464%201.073%201.07%200%20.61-.464%201.073-1.072%201.073zm0-1.43c-.213%200-.356.144-.356.358%200%20.216.143.36.357.36.216%200%20.36-.144.36-.36%200-.213-.144-.356-.36-.356z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E); no-repeat;
+  }
+
+
+
+/*=====  Table ======*/
+  .document table.tableblock {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+  .document table.tableblock th, .document table.tableblock td {
+    @apply .border-border;
+    padding: 8px 15px;
+    text-align: left;
+  }
+  .document table.tableblock th {
+    @apply .bg-tableHead;
+  }
+  .document table.tableblock td {
+    vertical-align: middle;
+  }
+  .document table.tableblock td code {
+    @apply .text-sm;
+  }
+  .document table.tableblock td .description {
+    @apply .text-grey .text-xs;
+    display: block;
+    line-height: 1.35;
+  }

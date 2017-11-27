@@ -1,0 +1,79 @@
+= Chul
+
+**Chul or Chull** is an informal Hindi word, which merely means `Itching`. This module is the result of itching I had to create *dead simple and time efficient* static documentation generator for myself.
+
+> Instead of building themes through their build process. Chul encourages you to use the parts of theme and build them into your build process.
+
+== Static documentation generator
+NOTE: Do note the keyword `documentation` here. `Chul` is not a static site generator like Jekyll or Hugo, it is a static generator but only for documentation.
+
+Before you spend time in ready this document, lemme put some points that will help you in deciding on using `Chul` or not.
+
+- [x] Uses link:http://asciidoctor.org/[asciidoc] over markdown. xref:_markdown_is_not_the_right_tool[Markdown is not the right tool]
+- [x] There is no way to mold this module. It is for documentation and will be for documentation.
+- [x] You decide the layout and the appearance.
+- [x] xref:_better_typography[Better typography]
+- [x] Doesn't build CSS or any other assets for you. xref:_PostCSS_build[PostCSS build]
+- [x] Deploy output to Github docs or Netlify directly.
+- [x] Used by link:http://adonisjs.com/[AdonisJs] and link:http://adonisjs.com/packages[friends] and if your docs are similar to it, then you will save lots of time.
+- [x] Heavily relies on link:https://tailwindcss.com/[Tailwind CSS]
+- [x] Uses link:http://edge.adonisjs.com/[Edge template engine]
+
+== Themes
+The themes in `Chul` are not giant themes that come with everything. Trust me, No one ever want to build sites, which uses layouts of others.
+
+We all want personal touch on our websites, and no one can decide, where to put the logo and how to design the header.
+
+1. Chul themes have no build process. Instead, they rely on your build process to import and use them.
+2. Chul themes do not have any layouts.
+3. They come with 2 Edge partials and one CSS style ( for typography only ).
+
+=== Better typography
+Since I wanted themes to be super small, they have to be of some value. Every theme comes with a `class` file, and this file has almost near to perfect typography for the docs.
+
+NOTE: The CSS file relies on `Tailwind Css` and must be compiled via PostCSS and Tailwind CSS only.
+
+**Why Tailwind?** +
+There is no point if the docs typography is not in sync with your website styles, whether it is the *font-color* or the *line-height*, everything has to be same. +
+
+Tailwind CSS makes it easier for me to use its configuration without adding it to the theme. Read xref:_build_css_using_webpack[Build CSS using Webpack] to learn more.
+
+=== PostCSS build
+Since `Chul` themes rely on Tailwind, they have to rely on PostCSS as well ( Tailwind is a PostCSS plugin ). With following inside `postcss.config.js` file, it should work great for you.
+
+.postcss.config.js
+[source, js]
+----
+const tailwindcss = require('tailwindcss')
+const atImport = require('postcss-import')
+const chul = require('chul')
+const path = require('path')
+
+module.exports = {
+  plugins: [
+    atImport({
+      addModulesDirectories: [path.join(__dirname, 'themes', chul.theme)]
+    })
+    tailwindcss(path.join(__dirname, 'tailwind.js'))
+  ]
+}
+----
+
+We are using `postcss-import` plugin to import the css file from your current theme
+
+.Inside Css
+[source, css]
+----
+@import "theme-style";
+@tailwind preflight;
+@tailwind utilities;
+----
+
+The `theme-style` is the css file shipped with each theme.
+
+=== Markdown is not the right tool
+The reason we do not make use of Markdown is that it is not the right tool for the Job.
+
+Markdown is a simple markup language and extreme limitations, due to which people create Markdown flavors so that they can missing functionality to it.
+
+On the other hand, AsciiDoc is written to write docs. Read more here http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const path = require('path')
 const meow = require('meow')
 const chalk = require('chalk')
@@ -103,7 +105,6 @@ if (command === 'build') {
     })
     .on('error', (error) => {
       console.log(chalk.red(error.message))
-      process.exit(1)
     })
 
   new Runner(process.cwd(), require(path.join(process.cwd(), 'chul.js')))

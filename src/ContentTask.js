@@ -54,8 +54,10 @@ class ContentTask {
    *
    * @method build
    */
-  build () {
-    return this._build()
+  async build () {
+    await this.validate()
+    const files = await this._build()
+    return files
   }
 
   /**
@@ -106,9 +108,10 @@ class ContentTask {
    * @param {Object} event
    * @param {String} filePath
    */
-  onChange (event, filePath) {
+  async onChange (event, filePath) {
     emitter.emit(`file:${event}`, filePath)
-    return this._build()
+    const files = await this.build()
+    return files
   }
 }
 

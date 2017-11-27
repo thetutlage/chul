@@ -1,13 +1,8 @@
 const edge = require('edge.js')
 const _ = require('lodash')
 const debug = require('debug')('chul:edge')
-let configuredEdge = null
 
 module.exports = function (viewsDir, theme, globals) {
-  if (configuredEdge) {
-    return
-  }
-
   edge.global('themePartial', (partial) => `../themes/${theme}/${partial}`)
   edge.global('permalink', (meta) => meta.permalink)
   debug('added themePartial and permalink view globals')
@@ -25,8 +20,6 @@ module.exports = function (viewsDir, theme, globals) {
    */
   edge.registerViews(viewsDir)
   debug('registered %s as views dir', viewsDir)
-
-  configuredEdge = true
 }
 
 module.exports.edge = edge

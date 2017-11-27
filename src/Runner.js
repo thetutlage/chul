@@ -34,9 +34,6 @@ class Runner {
    * @returns {Promise}
    */
   async runContentTask () {
-    if (typeof (this.contentTask.validate) === 'function') {
-      await this.contentTask.validate()
-    }
     const files = await this.contentTask.build()
     emitter.emit('content:files:processed', files)
   }
@@ -49,9 +46,6 @@ class Runner {
    * @returns {Promise}
    */
   async runPagesTask () {
-    if (typeof (this.pagesTask.validate) === 'function') {
-      await this.pagesTask.validate()
-    }
     const files = await this.pagesTask.build()
     emitter.emit('pages:files:processed', files)
   }

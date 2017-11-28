@@ -1,6 +1,6 @@
 {
   "name": "chul",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Static documentation generator used by Adonisjs and friends",
   "main": "index.js",
   "scripts": {

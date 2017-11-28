@@ -105,13 +105,16 @@ class Runner {
    * @param {Boolean} watch
    */
   async run (watch = true) {
+    if (watch) {
+      debug('watching for file changes')
+      emitter.emit('watcher', {
+        content: this.contentTask.watchGlob
+      })
+    }
+
     try {
       await Promise.all([this.runContentTask(), this.runPagesTask()])
       if (watch) {
-        debug('watching for file changes')
-        emitter.emit('watcher', {
-          content: this.contentTask.watchGlob
-        })
         this.watchFiles()
       }
     } catch (error) {

@@ -1,9 +1,7 @@
-<aside class="sidebar flex-no-shrink w-1/4">
-  <ul>
-    @each(item in menu)
-      <li class="{{ permalink(meta) === permalink(item) ? 'active' : '' }}">
-        <a href="{{ permalink(item) }}"> {{ item.title }} </a>
-      </li>
-    @endeach
-  </ul>
-</aside><!-- end sidebar -->
+<ul>
+  @each(item in menu)
+    <li class="{{ permalink(meta) === permalink(item) ? 'active' : '' }}">
+      <a href="{{ permalink(item) }}"> {{ item.title }} </a>
+    </li>
+  @endeach
+</ul>

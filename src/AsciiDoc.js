@@ -20,7 +20,7 @@ class AsciiDoc {
   convert (contents) {
     const doc = this.asciidoctor.load(contents, this.config)
     const html = doc
-      .convert(contents, this.config)
+      .convert()
       .replace(/<pre class="highlight">/g, () => '<pre class="highlight line-numbers">')
 
     return {

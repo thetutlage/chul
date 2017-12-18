@@ -162,10 +162,7 @@ test.group('Content plugins', () => {
     contentPlugins.generateMenu(files, metalsmith)
     assert.deepEqual(metalsmith.menu, [
       {
-        permalink: 'foo',
-        title: undefined,
-        name: 'foo.adoc',
-        category: undefined
+        permalink: 'foo'
       }
     ])
   })
@@ -200,5 +197,35 @@ test.group('Content plugins', () => {
         permalink: 'foo'
       }
     })
+  })
+
+  test('use all meta data from file node except mode, content and stats', (assert) => {
+    const files = {
+      'intro/foo.adoc': {
+        permalink: 'foo',
+        content: 'foo',
+        stats: {},
+        description: 'foo'
+      }
+    }
+
+    const metalsmith = {
+      metadata () {
+        return {
+          contentExtensions: ['adoc'],
+          edge: {
+            contentView: 'foo'
+          }
+        }
+      }
+    }
+
+    const contentPlugins = new ContentPlugins()
+    contentPlugins.generateMenu(files, metalsmith)
+    assert.deepEqual(metalsmith.menu, [{
+      permalink: 'foo',
+      content: 'foo',
+      description: 'foo'
+    }])
   })
 })

@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const path = require('path')
 const themes = ['slate']
-const fs = require('fs')
+const fs = require('fs-extra')
 
 module.exports = async function (rootDir, name) {
   if (!name) {

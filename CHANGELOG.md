@@ -1,3 +1,18 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/thetutlage/chul/compare/v1.0.1...v1.0.2) (2017-12-18)
+
+
+### Bug Fixes
+
+* **themeAdd:** use fs-extra for fs.copy method ([48556ec](https://github.com/thetutlage/chul/commit/48556ec))
+
+
+### Features
+
+* **content:** use adoc layout when defined ([3dc76cf](https://github.com/thetutlage/chul/commit/3dc76cf))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/thetutlage/chul/compare/v1.0.0...v1.0.1) (2017-11-28)
 

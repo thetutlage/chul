@@ -90,8 +90,8 @@ class ContentPlugins {
   generateMenu (files, metalsmith) {
     metalsmith.menu = []
 
-    _.each(files, ({ permalink, category, title, docTitle }, name) => {
-      const node = { name, permalink, category, title: title || docTitle }
+    _.each(files, (file, name) => {
+      const node = _.omit(file, ['contents', 'stats', 'mode'])
       const existingNode = _.find(metalsmith.menu, (item) => item.name === name)
 
       /**
@@ -116,14 +116,15 @@ class ContentPlugins {
    */
   generateHTML (files, metalsmith) {
     const meta = metalsmith.metadata()
-    debug('using %s as content view', meta.edge.contentView)
 
     _.each(files, (file, name) => {
-      const { html, permalink, category, title, docTitle } = file
-      file.contents = edge.render(meta.edge.contentView, {
-        html,
+      const view = file.layout || meta.edge.contentView
+      debug('using %s as content view', view)
+
+      file.contents = edge.render(view, {
+        html: file.html,
         menu: metalsmith.menu,
-        meta: { permalink, category, title: title || docTitle }
+        meta: _.omit(file, ['contents', 'stats', 'mode', 'html'])
       })
     })
   }

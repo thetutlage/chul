@@ -92,6 +92,7 @@ class ContentPlugins {
 
     _.each(files, (file, name) => {
       const node = _.omit(file, ['contents', 'stats', 'mode'])
+      node.name = name
       const existingNode = _.find(metalsmith.menu, (item) => item.name === name)
 
       /**

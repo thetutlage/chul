@@ -1,3 +1,11 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/thetutlage/chul/compare/v1.0.1...v1.0.3) (2017-12-19)
+
+
+### Bug Fixes
+
+* **menu:** add name property to node for easy orderBy ([34b6ebb](https://github.com/thetutlage/chul/commit/34b6ebb))
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/thetutlage/chul/compare/v1.0.1...v1.0.2) (2017-12-18)
 

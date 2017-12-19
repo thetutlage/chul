@@ -14,6 +14,11 @@
     padding: 60px 40px 60px 100px;
   }
 
+/*=====  Paragraph above the codeblock  ======*/
+  .document .paragraph + .listingblock pre {
+    margin-top: calc(config('margin.-vertical') + 10px);
+  }
+
 
 /*=====  The inline code block  ======*/
   .document code:not([class*="language-"]) {
@@ -27,9 +32,7 @@
 
 /*=====  Pre code block  ======*/
   .document pre[class*="language-"] {
-    @apply .font-mono;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    @apply .font-mono .mb-vertical;
     padding: 30px;
   }
   .document code[class*="language-"], .document  pre[class*="language-"] {
@@ -64,9 +67,8 @@
 
 /*=====  Doc heading  ======*/
   .document h1 {
-    @apply .text-heading;
+    @apply .text-heading .mb-vertical;
     font-size: 3.75rem;
-    margin-bottom: 30px;
   }
   .document h1 a.link, .document h2 a.link, .document h3 a.link, .document h4 a.link {
     @apply .text-heading .no-underline;
@@ -115,7 +117,7 @@
     position: relative;
   }
   .document h3 a.link {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
 
@@ -157,7 +159,7 @@
 
 /*=====  Ordered list ======*/
   .document .paragraph, .document .olist {
-    margin-bottom: 30px;
+    @apply .mb-vertical;
   }
   .document .olist ol > li {
     padding: 6px 0 6px 25px;
@@ -295,9 +297,10 @@
 
 /*=====  Table ======*/
   .document table.tableblock {
+    @apply .mb-vertical;
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 30px;
+    table-layout: fixed;
   }
   .document table.tableblock th, .document table.tableblock td {
     @apply .border .border-border;
